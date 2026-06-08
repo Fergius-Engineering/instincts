@@ -62,7 +62,7 @@ It costs more tokens and time, on purpose. The agent reads the source before it 
 
 Where this is thin, said plainly, so you decide with eyes open.
 
-- n=1. The rules come from one production project. No before/after numbers across many projects yet. Treat the benefit as a reasoned bet, not a measured fact. We don't have a clean "+X% tokens, -Y% rework" figure. If you want one, measure it on your own work.
+- n=1, and no numbers yet. The rules come from one production project. We don't have a clean "+X% tokens, -Y% rework" figure or a reproducible eval across many projects. We know that's exactly what this needs, and the plan is to measure it properly rather than invent a number that sounds good. Until then, treat the benefit as a reasoned bet, not a measured fact, and if you want a number, measure it on your own work.
 - English only. The skills are written in English and tuned for English prompts. On other languages they may fire less reliably.
 - Not tested across every model. Built and used on the larger Claude models. On smaller or older ones the behavior may degrade.
 - On Windows, activation needs bash. The SessionStart hook runs through bash (Git Bash). With no bash on PATH it exits quietly, so the agent just won't get the startup nudge, and nothing tells you. The skills still work if the agent reaches for them by description; only the automatic reminder is lost.

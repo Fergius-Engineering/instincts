@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.1 — 2026-06-09
+- `using-instincts`: the agent now discloses the `~/.instincts/asked` marker write in the same reply and lets the user opt out, instead of writing it silently.
+- README: the metrics limitation now states plainly that real numbers and an eval are planned, not invented.
+
 ## 0.3.0 — 2026-06-09
 - Added `critical-thinking` (run a proposal through one concrete example before building it) and `opportunistic-fixes` (surface and get an OK before fixing the broken thing you notice in passing). Fourteen skills total.
 - README: added a superpowers overlap section and a known-limitations section.
