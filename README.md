@@ -50,6 +50,8 @@ It costs more tokens and time, on purpose. The agent reads the source before it 
 
 Each skill is a plain markdown file. The agent reads the relevant one when it's relevant and follows it. No black box. You can read every rule in this repo before you install it.
 
+There's also one small SessionStart hook: a shell script that runs at the start of each session and reminds the agent that the instincts are available and what each one is for. That's what makes the agent reach for them without you having to ask. It only injects text into the session. It doesn't read or change your code, and you can read the script in `hooks/`.
+
 ## Install
 
 ```
