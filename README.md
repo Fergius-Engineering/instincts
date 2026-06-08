@@ -112,7 +112,7 @@ Finish honestly:
 
 ## What's next
 
-This is most of the transferable set we had. A few candidates were left out on purpose: once you strip the original war story, they turn into "think ahead" and "fix things you notice", which are true and useless. A rule with no teeth isn't worth shipping. New ones get added only when they pass the same bar as these: change behavior with a concrete example, not just sound wise.
+This is the transferable set we had. One candidate was left out on purpose: stripped of its original war story, "think ahead and design for the future" turns into a fortune cookie, and a rule with no teeth isn't worth shipping. New ones get added only when they pass the same bar as these: change behavior with a concrete example, not just sound wise.
 
 ## These aren't the last word
 
