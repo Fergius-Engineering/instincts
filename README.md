@@ -58,7 +58,7 @@ Each skill is a plain markdown file. The agent reads the relevant one when it's 
 /plugin install superpowers
 
 # 2. the reflex layer: instincts
-/plugin marketplace add <github-user>/instincts
+/plugin marketplace add Fergius-Engineering/instincts
 /plugin install instincts
 ```
 
