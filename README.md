@@ -20,7 +20,7 @@ Order matters. superpowers first, instincts on top.
 
 **Green tests that mean something.** Tests fail when the feature breaks, so passing isn't a false comfort. (`tests-with-teeth`)
 
-The net is less time catching the agent's mistakes, and more trust when it says "done".
+The net is less time catching the agent's mistakes, and more trust when it says "done". Those four are the headline. There are twelve reflexes in all, listed further down.
 
 ## Who this is for
 
@@ -88,14 +88,29 @@ The second answer is the one that saves you a bug.
 
 ## The skills
 
+Verify against the world, not your memory:
 - [`verify-against-code`](skills/verify-against-code/SKILL.md) — read the source before you claim what the code does.
+- [`question-the-premise`](skills/question-the-premise/SKILL.md) — after a few failed fixes, suspect the layer, not the next fix.
+
+Build for the failure you won't be there to see:
 - [`logging-for-remote-diagnosis`](skills/logging-for-remote-diagnosis/SKILL.md) — instrument so one log dump from a stranger explains the bug.
-- [`de-ai-prose`](skills/de-ai-prose/SKILL.md) — make written text read like a person wrote it.
+- [`fix-the-root-cause`](skills/fix-the-root-cause/SKILL.md) — fix the layer that made the bad state, not the symptom where it surfaced.
+- [`fix-in-the-shared-layer`](skills/fix-in-the-shared-layer/SKILL.md) — a bug in your own shared code is a gap every caller has; fix it where it lives.
+
+Look wider than the line in front of you:
+- [`entry-point-audit`](skills/entry-point-audit/SKILL.md) — before a change that must hold everywhere, find every entry point first.
+- [`project-onto-all-systems`](skills/project-onto-all-systems/SKILL.md) — project any change onto cache, notifications, persistence, undo, tests.
+- [`user-action-edge-cases`](skills/user-action-edge-cases/SKILL.md) — what if the user renames, moves, deletes, or duplicates the thing you depend on?
+- [`feasibility-guard`](skills/feasibility-guard/SKILL.md) — push back on work that's fragile or heavier than its value.
+
+Finish honestly:
 - [`tests-with-teeth`](skills/tests-with-teeth/SKILL.md) — a test must fail when the feature breaks.
+- [`de-ai-prose`](skills/de-ai-prose/SKILL.md) — make written text read like a person wrote it.
+- [`independent-review-gate`](skills/independent-review-gate/SKILL.md) — green tests and your own pass aren't enough; get a fresh review.
 
 ## What's next
 
-More instincts are in the queue: entry-point-audit, question-the-premise, project-onto-all-systems, and a few more. Each one ships only after it survives the same test the four here passed. It has to change behavior with a concrete example, not just sound wise. Some candidates won't make it, and that's fine.
+This is most of the transferable set we had. A few candidates were left out on purpose: once you strip the original war story, they turn into "think ahead" and "fix things you notice", which are true and useless. A rule with no teeth isn't worth shipping. New ones get added only when they pass the same bar as these: change behavior with a concrete example, not just sound wise.
 
 ## These aren't the last word
 

@@ -26,7 +26,7 @@ escape_for_json() {
 
 using_instincts_escaped=$(escape_for_json "$using_instincts_content")
 
-primer="The instincts layer is installed. It tunes four working reflexes on top of your normal process. Keep them active and load the matching skill with the Skill tool when its moment arrives:\n- verify-against-code: before you assert any claim about what code or a product does.\n- logging-for-remote-diagnosis: while building any mechanic that could fail on a machine you can't reach.\n- de-ai-prose: before showing any prose a human will read.\n- tests-with-teeth: whenever you write or review a test.\n\nBelow is the full 'instincts:using-instincts' skill. For the individual skills, use the Skill tool."
+primer="The instincts layer is installed. It tunes a set of working reflexes on top of your normal process: verify claims against the source instead of memory, build for failures you can't reproduce, look wider than the line in front of you, and finish honestly. Keep them active and load the matching skill with the Skill tool when its moment arrives. The full map is the 'instincts:using-instincts' skill below; each skill is loadable on its own with the Skill tool."
 
 session_context="<IMPORTANT>\n${primer}\n\n${using_instincts_escaped}\n</IMPORTANT>"
 

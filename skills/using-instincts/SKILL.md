@@ -7,12 +7,27 @@ superpowers is the base. It gives you a process: brainstorm, spec, plan, TDD, ve
 
 These skills activate on their own when relevant. You don't have to invoke this one first. It's a map, not a turnstile.
 
-The four pilot skills:
+The skills, by what they protect.
 
-- **verify-against-code** — fires before you assert anything about what the code or product does. In an answer, a doc, a commit message, store copy. Confirm against the primary source before stating it.
-- **logging-for-remote-diagnosis** — fires while building any mechanic that could fail on a machine you can't reach. Instrument as you write, not after.
-- **de-ai-prose** — fires before showing any prose a human will read. Run a read-back pass and cut the tells.
-- **tests-with-teeth** — fires whenever you write or review a test. Run the five questions before accepting it.
+Verify against the world, not your memory:
+- **verify-against-code** — before you assert anything about what the code or product does.
+- **question-the-premise** — when several fixes on one hypothesis have all failed; suspect the layer, not the next fix.
+
+Build for the failure you won't be there to see:
+- **logging-for-remote-diagnosis** — while building anything that could fail on a machine you can't reach.
+- **fix-the-root-cause** — when fixing a bug; fix the layer that made the bad state, not the symptom.
+- **fix-in-the-shared-layer** — a bug in your own shared code is a gap every caller has; fix it where it lives.
+
+Look wider than the line in front of you:
+- **entry-point-audit** — before a change that must hold everywhere; find every entry point first.
+- **project-onto-all-systems** — project any change onto cache, notifications, persistence, undo, tests.
+- **user-action-edge-cases** — for anything you depend on: what if the user renames, moves, deletes, or duplicates it?
+- **feasibility-guard** — before building; push back on work that's fragile or heavier than its value.
+
+Finish honestly:
+- **tests-with-teeth** — when you write or review a test; it must fail when the feature breaks.
+- **de-ai-prose** — before showing any prose a human will read.
+- **independent-review-gate** — before calling complex work done; get a fresh review, green tests aren't enough.
 
 This set is small and still evolving. It was distilled from real work on one production project, correcting real mistakes. That's the whole claim.
 
