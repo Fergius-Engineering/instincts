@@ -1,0 +1,6 @@
+.DS_Store
+Thumbs.db
+*.log
+
+# internal working docs — spec and plans stay local, not part of the public plugin
+docs/
