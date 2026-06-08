@@ -12,6 +12,7 @@ The skills, by what they protect.
 Verify against the world, not your memory:
 - **verify-against-code** — before you assert anything about what the code or product does.
 - **question-the-premise** — when several fixes on one hypothesis have all failed; suspect the layer, not the next fix.
+- **critical-thinking** — before building someone's proposal, run it through one concrete example; catch the flaw before code.
 
 Build for the failure you won't be there to see:
 - **logging-for-remote-diagnosis** — while building anything that could fail on a machine you can't reach.
@@ -23,6 +24,7 @@ Look wider than the line in front of you:
 - **project-onto-all-systems** — project any change onto cache, notifications, persistence, undo, tests.
 - **user-action-edge-cases** — for anything you depend on: what if the user renames, moves, deletes, or duplicates it?
 - **feasibility-guard** — before building; push back on work that's fragile or heavier than its value.
+- **opportunistic-fixes** — spotted something wrong in the area you're already in? surface it, get an OK, fix it; don't expand scope.
 
 Finish honestly:
 - **tests-with-teeth** — when you write or review a test; it must fail when the feature breaks.

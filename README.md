@@ -20,7 +20,7 @@ Order matters. superpowers first, instincts on top.
 
 **Green tests that mean something.** Tests fail when the feature breaks, so passing isn't a false comfort. (`tests-with-teeth`)
 
-The net is less time catching the agent's mistakes, and more trust when it says "done". Those four are the headline. There are twelve reflexes in all, listed further down.
+The net is less time catching the agent's mistakes, and more trust when it says "done". Those four are the headline. There are fourteen reflexes in all, listed further down.
 
 ## Who this is for
 
@@ -91,6 +91,7 @@ The second answer is the one that saves you a bug.
 Verify against the world, not your memory:
 - [`verify-against-code`](skills/verify-against-code/SKILL.md) — read the source before you claim what the code does.
 - [`question-the-premise`](skills/question-the-premise/SKILL.md) — after a few failed fixes, suspect the layer, not the next fix.
+- [`critical-thinking`](skills/critical-thinking/SKILL.md) — run a proposal through one concrete example before you build it.
 
 Build for the failure you won't be there to see:
 - [`logging-for-remote-diagnosis`](skills/logging-for-remote-diagnosis/SKILL.md) — instrument so one log dump from a stranger explains the bug.
@@ -102,6 +103,7 @@ Look wider than the line in front of you:
 - [`project-onto-all-systems`](skills/project-onto-all-systems/SKILL.md) — project any change onto cache, notifications, persistence, undo, tests.
 - [`user-action-edge-cases`](skills/user-action-edge-cases/SKILL.md) — what if the user renames, moves, deletes, or duplicates the thing you depend on?
 - [`feasibility-guard`](skills/feasibility-guard/SKILL.md) — push back on work that's fragile or heavier than its value.
+- [`opportunistic-fixes`](skills/opportunistic-fixes/SKILL.md) — fix the broken thing you notice in passing, but surface it and get an OK first.
 
 Finish honestly:
 - [`tests-with-teeth`](skills/tests-with-teeth/SKILL.md) — a test must fail when the feature breaks.
