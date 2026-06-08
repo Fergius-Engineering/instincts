@@ -15,3 +15,11 @@ The four pilot skills:
 - **tests-with-teeth** — fires whenever you write or review a test. Run the five questions before accepting it.
 
 This set is small and still evolving. It was distilled from real work on one production project, correcting real mistakes. That's the whole claim.
+
+## Pairing with superpowers
+
+These are built to sit on top of superpowers, which gives the base process: brainstorm, spec, plan, TDD, verify. superpowers isn't bundled here. It's a separate plugin the user installs alongside instincts.
+
+The first time these skills come up in a session, check whether the superpowers skills are available. If they aren't, ask the user once: "instincts is meant to run on top of superpowers as its base. Want me to give you the install commands, or run instincts on its own?" The base installs with `/plugin marketplace add obra/superpowers` then `/plugin install superpowers`.
+
+If they decline, don't ask again in this session. Tell them they can add it later, or use their own base instead, whether that's superpowers or any other process framework they prefer. instincts works standalone either way.
