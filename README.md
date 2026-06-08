@@ -38,13 +38,36 @@ Not magic, not a model change. It's a set of instructions the agent reads.
 
 Not a process or a workflow. superpowers covers that. This is reflexes, not steps.
 
+## How this sits with superpowers
+
+A few of these skills sit close to a superpowers skill on purpose. Here's where, so nothing surprises you and you know which wins when both could fire.
+
+- `verify-against-code` sharpens superpowers' verification-before-completion. Not just "did I verify" but "read the actual source before you claim it".
+- `tests-with-teeth` sharpens test-driven-development. The test must fail when the feature breaks, with five concrete questions to check that.
+- `independent-review-gate` is the non-optional version of requesting-code-review, for work that ships to other people.
+- `question-the-premise` and `fix-the-root-cause` pair with systematic-debugging. superpowers debugs; these say which layer to debug.
+- `critical-thinking` runs just before brainstorming. Pressure-test the idea with one example before you spec it.
+
+Where both could fire, treat instincts as the finer pass on top of the superpowers step, not a replacement for it. Without superpowers these still work, they just have less process around them.
+
 ## Status and what it costs
 
-In development. v0.1, four skills.
+In development, at v0.3.0 with fourteen skills. Still early.
 
 The rules come from one real production project. Sample size is one. They've caught real bugs and real false claims there, but nobody yet knows which ones generalize perfectly. They will change.
 
 It costs more tokens and time, on purpose. The agent reads the source before it answers, adds logs as it builds, checks its own tests and prose. That's slower and not free. Careful work usually is. The trade is fewer wrong answers and less rework, and for serious work that's worth it. If you want fast and cheap over careful, this layer isn't for you.
+
+## Known limitations
+
+Where this is thin, said plainly, so you decide with eyes open.
+
+- n=1. The rules come from one production project. No before/after numbers across many projects yet. Treat the benefit as a reasoned bet, not a measured fact. We don't have a clean "+X% tokens, -Y% rework" figure. If you want one, measure it on your own work.
+- English only. The skills are written in English and tuned for English prompts. On other languages they may fire less reliably.
+- Not tested across every model. Built and used on the larger Claude models. On smaller or older ones the behavior may degrade.
+- On Windows, activation needs bash. The SessionStart hook runs through bash (Git Bash). With no bash on PATH it exits quietly, so the agent just won't get the startup nudge, and nothing tells you. The skills still work if the agent reaches for them by description; only the automatic reminder is lost.
+- Instructions, not enforcement. These are rules the agent follows, not code that forces anything. Reliability is the model's compliance, not a guarantee.
+- Installed as a set. You get all fourteen, not a pick-list. You can ignore or stop using any one, but there's no per-skill install today.
 
 ## How it works
 

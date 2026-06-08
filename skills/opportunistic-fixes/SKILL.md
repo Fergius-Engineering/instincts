@@ -5,7 +5,7 @@ description: Use when you notice an incidental correctness problem (a stale comm
 
 ## The rule
 
-While you're already working in an area, you'll spot small things that are wrong but aren't your task. A comment that describes old behavior, a doc line that drifted from the code, a stale reference. Don't silently ignore them, and don't silently fix them either. Point them out, ask if you should fix them as part of this change, and only then do it. Stay inside the area you're already in. This is not a license to go hunting for unrelated refactors.
+While you're already working in an area, you'll spot small things that are wrong but aren't your task. A comment that describes old behavior, a doc line that drifted from the code, a stale reference. Don't silently ignore them, and don't silently fix them either. Point them out, ask if you should fix them as part of this change, and only then do it. Stay inside the area you're already in. This is not "do more than the task". It's not silently leaving a known-wrong thing behind, and only with the user's OK. It is not a license to go hunting for unrelated refactors.
 
 ## Fires when
 

@@ -7,6 +7,8 @@ description: Use when adding or changing any feature - project it onto every par
 
 A feature is never just the function you're writing. It ripples into the cache that now holds stale data, the notification that now says the wrong thing, the undo that doesn't know about it, the tests that don't cover it. Before you call it done, walk the whole system and ask what this change touches.
 
+This is about the consequences of the change you're already making, not a license to add features nobody asked for. You're tracing the ripples of one change, not widening the scope.
+
 ## Fires when
 
 Adding a feature, changing a data model, or adding any action that creates, edits, or removes state.
