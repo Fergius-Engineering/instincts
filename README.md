@@ -20,7 +20,7 @@ Order matters. superpowers first, instincts on top.
 
 **Green tests that mean something.** Tests fail when the feature breaks, so passing isn't a false comfort. (`tests-with-teeth`)
 
-The net is less time catching the agent's mistakes, and more trust when it says "done". Those four are the headline. There are fourteen reflexes in all, listed further down.
+The net is less time catching the agent's mistakes, and more trust when it says "done". Those four are the headline. There are eighteen reflexes in all, listed further down.
 
 ## Who this is for
 
@@ -52,7 +52,7 @@ Where both could fire, treat instincts as the finer pass on top of the superpowe
 
 ## Status and what it costs
 
-In development, at v0.3.0 with fourteen skills. Still early.
+In development, at v0.4.0 with eighteen skills. Still early.
 
 The rules come from one real production project. Sample size is one. They've caught real bugs and real false claims there, but nobody yet knows which ones generalize perfectly. They will change.
 
@@ -67,7 +67,7 @@ Where this is thin, said plainly, so you decide with eyes open.
 - Not tested across every model. Built and used on the larger Claude models. On smaller or older ones the behavior may degrade.
 - On Windows, activation needs bash. The SessionStart hook runs through bash (Git Bash). With no bash on PATH it exits quietly, so the agent just won't get the startup nudge, and nothing tells you. The skills still work if the agent reaches for them by description; only the automatic reminder is lost.
 - Instructions, not enforcement. These are rules the agent follows, not code that forces anything. Reliability is the model's compliance, not a guarantee.
-- Installed as a set. You get all fourteen, not a pick-list. You can ignore or stop using any one, but there's no per-skill install today.
+- Installed as a set. You get all eighteen, not a pick-list. You can ignore or stop using any one, but there's no per-skill install today.
 
 ## How it works
 
@@ -127,6 +127,12 @@ Look wider than the line in front of you:
 - [`user-action-edge-cases`](skills/user-action-edge-cases/SKILL.md) — what if the user renames, moves, deletes, or duplicates the thing you depend on?
 - [`feasibility-guard`](skills/feasibility-guard/SKILL.md) — push back on work that's fragile or heavier than its value.
 - [`opportunistic-fixes`](skills/opportunistic-fixes/SKILL.md) — fix the broken thing you notice in passing, but surface it and get an OK first.
+- [`no-duplicate-logic`](skills/no-duplicate-logic/SKILL.md) — read the whole function before adding a case; a second parallel block doubles the output.
+
+Design for real conditions, not the happy path:
+- [`performance-at-scale`](skills/performance-at-scale/SKILL.md) — on a hot path, design for the largest realistic input, not the test fixture.
+- [`build-release-mindset`](skills/build-release-mindset/SKILL.md) — touching build, release, or CI? start clean, fail fast, version artifacts, validate outputs, know the rollback.
+- [`ux-designer-mindset`](skills/ux-designer-mindset/SKILL.md) — walk the interaction and the edge states; a green build says nothing about how it feels.
 
 Finish honestly:
 - [`tests-with-teeth`](skills/tests-with-teeth/SKILL.md) — a test must fail when the feature breaks.

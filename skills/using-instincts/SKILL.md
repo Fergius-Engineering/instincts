@@ -25,6 +25,12 @@ Look wider than the line in front of you:
 - **user-action-edge-cases** — for anything you depend on: what if the user renames, moves, deletes, or duplicates it?
 - **feasibility-guard** — before building; push back on work that's fragile or heavier than its value.
 - **opportunistic-fixes** — spotted something wrong in the area you're already in? surface it, get an OK, fix it; don't expand scope.
+- **no-duplicate-logic** — before adding a case to an existing function, read the whole thing; the case may already be there, and a second block doubles the output.
+
+Design for real conditions, not the happy path:
+- **performance-at-scale** — on a hot path, design for the largest realistic input; a linear scan that's fine in the test freezes the field.
+- **build-release-mindset** — touching build, release, or CI? start clean, fail fast, version artifacts, validate outputs, know the rollback.
+- **ux-designer-mindset** — walk the interaction and the edge states; a green build says nothing about how the thing feels.
 
 Finish honestly:
 - **tests-with-teeth** — when you write or review a test; it must fail when the feature breaks.
