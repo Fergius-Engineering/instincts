@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.5.0 — 2026-07-01
+- `using-instincts` is now a turnstile. The old framing — "these activate on their own, you don't have to invoke them; a map, not a turnstile" — was read, even with superpowers installed, as permission to apply an instinct from memory and never load its skill, so the agent got the paraphrase but not the current text, the checklist, or a visible trace. That carve-out is removed: when an instinct applies you load it with the Skill tool and announce "Using [instinct]" before acting; applying it from memory does not count. Added red flags and a rationalization table (including "superpowers already forces skills, so these are exempt"). The SessionStart primer now carries the same MUST-invoke wording.
+- Fixed a version drift: the `marketplace.json` plugin entry was still 0.3.1 while `plugin.json` had moved to 0.4.0. Both are now 0.5.0.
+
+## 0.4.0 — 2026-06-23
+- Added four design-for-reality instincts: `performance-at-scale`, `build-release-mindset`, `ux-designer-mindset`, `no-duplicate-logic`. Eighteen skills total.
+
 ## 0.3.1 — 2026-06-09
 - `using-instincts`: the agent now discloses the `~/.instincts/asked` marker write in the same reply and lets the user opt out, instead of writing it silently.
 - README: the metrics limitation now states plainly that real numbers and an eval are planned, not invented.
