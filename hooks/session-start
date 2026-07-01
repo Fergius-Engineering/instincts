@@ -26,7 +26,7 @@ escape_for_json() {
 
 using_instincts_escaped=$(escape_for_json "$using_instincts_content")
 
-primer="The instincts layer is installed. It tunes a set of working reflexes on top of your normal process: verify claims against the source instead of memory, build for failures you can't reproduce, look wider than the line in front of you, and finish honestly. Keep them active and load the matching skill with the Skill tool when its moment arrives. The full map is the 'instincts:using-instincts' skill below; each skill is loadable on its own with the Skill tool."
+primer="The instincts layer is installed. It tunes a set of working reflexes on top of your normal process: verify claims against the source instead of memory, build for failures you can't reproduce, look wider than the line in front of you, and finish honestly. When one of these applies to what you're about to do, you MUST load the matching skill with the Skill tool BEFORE you act and announce it — applying the principle from memory without loading the skill does not count and cuts corners. These skills are not exempt from the invoke-the-skill discipline. The full map and the rule are in the 'instincts:using-instincts' skill below; each skill is loadable on its own with the Skill tool."
 
 session_context="<IMPORTANT>\n${primer}\n\n${using_instincts_escaped}\n</IMPORTANT>"
 

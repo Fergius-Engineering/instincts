@@ -1,13 +1,40 @@
 ---
 name: using-instincts
-description: Read once when starting work in a project that has the instincts plugin installed - explains that instincts is the reflex layer on top of superpowers and points to the individual instinct skills
+description: Use when doing any work in a project that has the instincts plugin installed
 ---
 
-superpowers is the base. It gives you a process: brainstorm, spec, plan, TDD, verify. instincts is one level finer. It works on reflexes, not workflow — the habits that make a process honest rather than just followed.
+superpowers is the base process: brainstorm, spec, plan, TDD, verify. instincts is one level finer — a set of working reflexes that keep that process honest rather than just followed. This skill is the map to them.
 
-These skills activate on their own when relevant. You don't have to invoke this one first. It's a map, not a turnstile.
+## The rule
 
-The skills, by what they protect.
+When an instinct below applies to what you're about to do, **load it with the Skill tool before you act** — the same discipline superpowers puts on any skill the moment it applies. Then announce "Using [instinct] to …" and follow the skill you loaded.
+
+**Applying the principle "from memory" is NOT using the instinct.** Naming verify-against-code in your reasoning and moving on is skipping it. When you paraphrase the idea instead of loading the skill you lose its current text, you lose its checklist, and you leave no visible trace that the reflex ran — which is exactly how corners get cut. The reflex runs when you invoke the skill, not when you recall that it exists.
+
+An earlier version of this map said these skills "activate on their own — you don't have to invoke them." That was wrong: it read as permission to internalize the principle instead of running it, and skills got skipped even with superpowers installed. There is no such exemption. instincts are not carved out of the invoke-the-skill rule; if anything they bind harder.
+
+**Violating the letter here is violating the spirit.** "I honored the idea without loading the skill" is not compliance.
+
+### Red flags — you are skipping an instinct
+
+- "I already applied that principle in my head."
+- "I know what it says, loading it is just ceremony."
+- "These activate on their own; invoking is optional."
+- "superpowers' invoke rule is about superpowers skills, not these."
+- You named an instinct (verify-against-code, entry-point-audit, tests-with-teeth …) in your reasoning without a Skill call for it.
+
+All of these mean: STOP, load the skill with the Skill tool, then proceed.
+
+| Rationalization | Reality |
+|---|---|
+| "I applied it internally — same result" | No. You worked from memory, not the current text. No checklist, no trace, corners cut. |
+| "The skill just restates what I know" | Then loading it costs seconds and confirms it. If it doesn't, you were about to skip a step. |
+| "They activate on their own" | Skills don't self-execute. Nothing runs until you call the Skill tool. |
+| "superpowers already forces skills, so these are covered / exempt" | Not exempt either way — you still invoke each instinct explicitly, like any skill. |
+
+## The instincts, by what they protect
+
+Load the one that matches the move you're about to make.
 
 Verify against the world, not your memory:
 - **verify-against-code** — before you assert anything about what the code or product does.
@@ -37,7 +64,7 @@ Finish honestly:
 - **de-ai-prose** — before showing any prose a human will read.
 - **independent-review-gate** — before calling complex work done; get a fresh review, green tests aren't enough.
 
-This set is small and still evolving. It was distilled from real work on one production project, correcting real mistakes. That's the whole claim.
+This set is small and still evolving. It was distilled from real work on one production project, correcting real mistakes. That's the whole claim — and it's separate from the rule above: be humble about how proven the set is, be strict about loading the skill when it applies.
 
 ## Pairing with superpowers
 
