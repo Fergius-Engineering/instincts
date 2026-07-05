@@ -20,7 +20,7 @@ Order matters. superpowers first, instincts on top.
 
 **Green tests that mean something.** Tests fail when the feature breaks, so passing isn't a false comfort. (`tests-with-teeth`)
 
-The net is less time catching the agent's mistakes, and more trust when it says "done". Those four are the headline. There are eighteen reflexes in all, listed further down.
+The net is less time catching the agent's mistakes, and more trust when it says "done". Those four are the headline. There are nineteen reflexes in all, listed further down.
 
 ## Who this is for
 
@@ -47,12 +47,13 @@ A few of these skills sit close to a superpowers skill on purpose. Here's where,
 - `independent-review-gate` is the non-optional version of requesting-code-review, for work that ships to other people.
 - `question-the-premise` and `fix-the-root-cause` pair with systematic-debugging. superpowers debugs; these say which layer to debug.
 - `critical-thinking` runs just before brainstorming. Pressure-test the idea with one example before you spec it.
+- `plan-with-teeth` sharpens writing-plans. superpowers gives the plan its shape; this one makes every claim in it read from the source, with a check on every step.
 
 Where both could fire, treat instincts as the finer pass on top of the superpowers step, not a replacement for it. Without superpowers these still work, they just have less process around them.
 
 ## Status and what it costs
 
-In development, at v0.4.0 with eighteen skills. Still early.
+In development, at v0.6.0 with nineteen skills. Still early.
 
 The rules come from one real production project. Sample size is one. They've caught real bugs and real false claims there, but nobody yet knows which ones generalize perfectly. They will change.
 
@@ -67,7 +68,7 @@ Where this is thin, said plainly, so you decide with eyes open.
 - Not tested across every model. Built and used on the larger Claude models. On smaller or older ones the behavior may degrade.
 - On Windows, activation needs bash. The SessionStart hook runs through bash (Git Bash). With no bash on PATH it exits quietly, so the agent just won't get the startup nudge, and nothing tells you. The skills still work if the agent reaches for them by description; only the automatic reminder is lost.
 - Instructions, not enforcement. These are rules the agent follows, not code that forces anything. Reliability is the model's compliance, not a guarantee.
-- Installed as a set. You get all eighteen, not a pick-list. You can ignore or stop using any one, but there's no per-skill install today.
+- Installed as a set. You get all nineteen, not a pick-list. You can ignore or stop using any one, but there's no per-skill install today.
 
 ## How it works
 
@@ -89,7 +90,7 @@ There's also one small SessionStart hook: a shell script that runs at the start 
 
 ## How to start
 
-Install both, then just work. The skills activate on their own when they're relevant. You don't call them. One thing to try first: ask the agent "does our code do X?" and watch it read the source before answering instead of guessing. That's `verify-against-code` firing.
+Install both, then just work. When a reflex applies, the agent loads the matching skill and says so — you don't have to ask for it by name. One thing to try first: ask the agent "does our code do X?" and watch it read the source before answering instead of guessing. That's `verify-against-code` firing.
 
 ## A tip: pair a worker with an advisor
 
@@ -115,6 +116,7 @@ Verify against the world, not your memory:
 - [`verify-against-code`](skills/verify-against-code/SKILL.md) — read the source before you claim what the code does.
 - [`question-the-premise`](skills/question-the-premise/SKILL.md) — after a few failed fixes, suspect the layer, not the next fix.
 - [`critical-thinking`](skills/critical-thinking/SKILL.md) — run a proposal through one concrete example before you build it.
+- [`plan-with-teeth`](skills/plan-with-teeth/SKILL.md) — plan from the source, not memory; attack the draft before it ships.
 
 Build for the failure you won't be there to see:
 - [`logging-for-remote-diagnosis`](skills/logging-for-remote-diagnosis/SKILL.md) — instrument so one log dump from a stranger explains the bug.

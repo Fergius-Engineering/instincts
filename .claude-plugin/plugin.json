@@ -1,6 +1,6 @@
 {
   "name": "instincts",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "The reflex layer on top of superpowers. Tunes an agent's working instincts — verify against the source, instrument for remote diagnosis, write for humans, test with teeth.",
   "author": {
     "name": "Fergius Engineering"

@@ -1,11 +1,13 @@
 ---
 name: question-the-premise
-description: Use when stuck after several failed fixes on the same hypothesis - step back and question whether you're fixing the right layer at all, before trying the next fix. Being data-driven inside a wrong frame still fails.
+description: Use when several well-reasoned fixes on the same hypothesis have all failed, or when a symptom looks impossible.
 ---
 
 ## The rule
 
 Working by hypothesis, test, confirm only helps inside the right frame. If two or three well-reasoned fixes all fail, the likely problem is your premise, not your next fix. Stop and ask: have I actually confirmed the bug is in the layer I'm attacking?
+
+This sharpens superpowers' systematic-debugging: that skill runs the loop; this one says when to stop looping and suspect the frame itself.
 
 ## Fires when
 
@@ -17,7 +19,7 @@ After about two or three failed fixes, treat the premise as the suspect, not the
 
 Chase the impossible-looking discrepancy. It points at the layer you're not looking at.
 
-And one more thing: a missing log line is not proof the code didn't run. The log level may have been off. Verify, don't infer from silence.
+If your evidence for the premise is a missing log line, load logging-for-remote-diagnosis first: absence is not proof.
 
 ## Worked example
 
@@ -32,5 +34,5 @@ The tell was right there the whole time: it passed alone but failed in the suite
 | Thought | Reality |
 |---|---|
 | "Just one more fix and it'll work" after 2–3 have failed | Suspect the premise instead. |
-| "No log line for it, so it didn't run" | Or the log level was off. Verify emission. |
+| "The data confirms my theory" | Data read inside a wrong frame confirms the frame. Check the layer. |
 | "I'll just rewrite this module" | Before you've confirmed the bug is even in that module. |

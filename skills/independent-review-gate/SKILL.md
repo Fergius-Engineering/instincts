@@ -1,6 +1,6 @@
 ---
 name: independent-review-gate
-description: Use before you call complex or shippable work done - get a fresh, independent review of the whole change. Your own pass plus green tests is not enough; you read past your own mistakes.
+description: Use when about to call complex or shippable work done, or before merging.
 ---
 
 ## The rule
@@ -8,6 +8,8 @@ description: Use before you call complex or shippable work done - get a fresh, i
 Your own review and a green test suite are not enough. You're invested in the approach, so you read past your own mistakes, and the tests only cover what you already thought to check. Before calling complex work done, have someone or something with no stake review the whole change.
 
 A fresh set of eyes catches the defect that's obvious in hindsight and invisible to you.
+
+This is the non-optional version of superpowers' requesting-code-review: the review is not a step to skip when the suite is green, because the green suite is exactly what can't be trusted alone — and the fix you make after the review gets re-reviewed too.
 
 ## Fires when
 
@@ -21,7 +23,7 @@ The green suite is not the gate. The independent verdict is.
 
 ## Worked example
 
-Your change passes all 200 tests and your own read-through. A reviewer with fresh eyes notices that one branch — the error path no test covers — has an inverted condition: it retries on success and gives up on failure.
+Your change to a payment client passes all 200 tests and your own read-through. A reviewer with fresh eyes notices that one branch — the error path no test covers — has an inverted condition: it retries on success and gives up on failure.
 
 The suite was green because it only ran the happy path. Your own review missed it because you "knew" what the code was meant to do, so you read what you intended instead of what you wrote.
 

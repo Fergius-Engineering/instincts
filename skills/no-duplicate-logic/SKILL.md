@@ -1,6 +1,6 @@
 ---
 name: no-duplicate-logic
-description: Use before adding a case, check, or branch to a function that already exists - read the whole function first. The thing you're about to add is often already there a few lines down, and a second parallel block doesn't replace the first; both run and the output doubles.
+description: Use when adding a case, check, or branch to a function that already exists, especially after jumping straight to the insertion point.
 ---
 
 ## The rule
@@ -19,7 +19,7 @@ Before adding logic that emits a result keyed by some id or name, search the who
 
 ## Worked example
 
-A validation function already emits a "bad-name" issue for an asset. You add a new block to emit "bad-name" without noticing the existing one a screen above. Now every bad-named asset produces two identical issues, and a count somewhere is quietly off by a factor of two. The real change was three lines inside the block that was already there. Reading the function before inserting would have shown it.
+A validation function already emits a "bad-name" issue for a record. You add a new block to emit "bad-name" without noticing the existing one a screen above. Now every bad-named record produces two identical issues, and a count somewhere is quietly off by a factor of two. The real change was three lines inside the block that was already there. Reading the function before inserting would have shown it.
 
 ## Red flags
 

@@ -1,11 +1,13 @@
 ---
 name: critical-thinking
-description: Use when about to build something someone proposed (especially a confident user) - run the idea through one concrete example first. If the example exposes a flaw, stop and say so before writing any code.
+description: Use when about to build something someone proposed, especially when the proposer sounds confident and the idea sounds obviously fine.
 ---
 
 ## The rule
 
 A proposal that sounds reasonable can still be wrong, and the person proposing it, often the user sounding sure, can't always see the flaw. Before you build what was asked, run the idea through one concrete example. If the example breaks, stop and say so. Building first and finding the flaw later wastes everyone's time, and "they sounded confident" is not a reason to skip the check.
+
+This sharpens superpowers' brainstorming: brainstorming explores what to build; this is the one-example probe it doesn't mandate.
 
 ## Fires when
 

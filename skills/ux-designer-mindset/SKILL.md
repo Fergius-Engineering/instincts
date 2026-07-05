@@ -1,6 +1,6 @@
 ---
 name: ux-designer-mindset
-description: Use when building anything a user touches - walk the full interaction and the edge states before you call it done. A feature that compiles and returns the right value can still feel broken, and a green build proves nothing about how it feels.
+description: Use when building or changing anything a user interacts with - a control, a screen, a flow.
 ---
 
 ## The rule
@@ -13,11 +13,11 @@ Building or changing any control, screen, or flow a user interacts with.
 
 ## How to apply
 
-Before coding, narrate the interaction: "user does X, sees Y, expects Z" — and flag every gap where Y or Z is missing. After coding, walk the edge states you didn't design for: empty, zero results, a hundred thousand results, rapid repeated clicks, first run versus returning, panel closed versus open. Every clickable control must give feedback — hover highlight, a hand cursor, a pressed state — and you verify that in the running app, because the framework silently falls back to a dead style on a bad name and the build stays green either way. Offer the small touches that show care: a tooltip, a brief fade, a count on hover.
+Before coding, narrate the interaction: "user does X, sees Y, expects Z" — and flag every gap where Y or Z is missing. After coding, walk the edge states you didn't design for: empty, zero results, a hundred thousand results, rapid repeated clicks, first run versus returning, panel closed versus open. Every clickable control must give feedback (a hover state, a cursor change), and you verify that in the running app — in many UI frameworks a bad style name silently falls back to a default and the build stays green either way. Offer the small touches that show care, like a count on hover or a brief fade.
 
 ## Worked example
 
-A toolbar icon is wired to its action and compiles cleanly, but it's drawn with a borderless style — no hover highlight, no cursor change, no pressed feedback. It works when clicked, yet it reads as dead, and users stop trusting that it does anything. Switching to a real button style and checking the hover and cursor live in the editor fixes the feel. The green build had nothing to say about it, because nothing about feel shows up at compile time.
+A toolbar icon is wired to its action and compiles cleanly, but it's drawn with a borderless style — no hover highlight, no cursor change. It works when clicked, yet it reads as dead, and users stop trusting that it does anything. Switching to a real button style and checking the hover and cursor live in the running app fixes the feel. The green build had nothing to say about it, because nothing about feel shows up at compile time.
 
 ## Red flags
 

@@ -1,6 +1,6 @@
 ---
 name: verify-against-code
-description: Use when about to assert any factual claim about what code or a product does - in an answer, a doc, a commit message, or anything a user will see. Confirm the claim against the primary source before stating it; never trust memory, the user's framing, plan headers, or doc tables on faith.
+description: Use when about to assert any factual claim about what code or a product does - in an answer, a doc, a commit message, or anything a user will see.
 ---
 
 ## The rule

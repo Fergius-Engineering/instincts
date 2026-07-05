@@ -1,11 +1,11 @@
 ---
 name: project-onto-all-systems
-description: Use when adding or changing any feature - project it onto every part of the system it touches (cache, notifications, persistence, undo, permissions, search, tests), not just the code directly in front of you.
+description: Use when adding or changing a feature, a data model, or any action that creates, edits, or removes state.
 ---
 
 ## The rule
 
-A feature is never just the function you're writing. It ripples into the cache that now holds stale data, the notification that now says the wrong thing, the undo that doesn't know about it, the tests that don't cover it. Before you call it done, walk the whole system and ask what this change touches.
+A feature is never just the function you're writing. It ripples into the cache that now holds stale data and the notification that now says the wrong thing; undo doesn't know the change happened, and no test covers it. Before you call it done, walk the whole system and ask what this change touches.
 
 This is about the consequences of the change you're already making, not a license to add features nobody asked for. You're tracing the ripples of one change, not widening the scope.
 

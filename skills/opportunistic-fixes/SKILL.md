@@ -1,11 +1,11 @@
 ---
 name: opportunistic-fixes
-description: Use when you notice an incidental correctness problem (a stale comment, a wrong doc line, a drifted reference) in the area you're already editing - surface it and get the user's OK before fixing it, and stay inside the area you're already touching.
+description: Use when noticing an incidental correctness problem - a stale comment, a wrong doc line, a drifted reference - in the area already being edited.
 ---
 
 ## The rule
 
-While you're already working in an area, you'll spot small things that are wrong but aren't your task. A comment that describes old behavior, a doc line that drifted from the code, a stale reference. Don't silently ignore them, and don't silently fix them either. Point them out, ask if you should fix them as part of this change, and only then do it. Stay inside the area you're already in. This is not "do more than the task". It's not silently leaving a known-wrong thing behind, and only with the user's OK. It is not a license to go hunting for unrelated refactors.
+While you're already working in an area, you'll spot small things that are wrong but aren't your task. A comment that describes old behavior, a doc line that drifted from the code. Don't silently ignore them, and don't silently fix them either: point them out, ask if the fix belongs in this change, and only then do it, staying inside the area you're already in. This is not a license to go hunting for unrelated refactors — it's a refusal to leave a known-wrong thing behind without saying so.
 
 ## Fires when
 
@@ -13,7 +13,7 @@ You're editing a file or area for one task and notice a separate, incidental cor
 
 ## How to apply
 
-Name the thing you noticed and where it is. Ask whether to fix it as part of the current change. On a yes, fix it and say what you changed. Keep it to the area you're already touching. If the fix would pull you into unrelated code, that's a new task, not an opportunistic fix. Check the thing is actually wrong against the code before you flag it, so you don't "correct" something that was already right.
+Name the thing you noticed and where it is. Ask whether to fix it as part of the current change. On a yes, fix it and say what you changed. Keep it to the area you're already touching. If the fix would pull you into unrelated code, that's a new task, not an opportunistic fix. A bug you hit in your own shared code isn't opportunistic either — that's fix-in-the-shared-layer. Check the thing is actually wrong against the code before you flag it, so you don't "correct" something that was already right.
 
 ## Worked example
 

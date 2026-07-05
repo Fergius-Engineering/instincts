@@ -1,11 +1,13 @@
 ---
 name: fix-the-root-cause
-description: Use when fixing any bug - find the layer that creates the bad state and fix it there, instead of patching the symptom where it happened to surface.
+description: Use when fixing any bug, especially one that surfaces far from where the bad state was created.
 ---
 
 ## The rule
 
 The place a bug shows up is rarely the place it comes from. Patching the symptom at the surface leaves the real cause free to break something else next week. Find the layer that produced the bad state and fix it there.
+
+This sharpens superpowers' systematic-debugging: that skill finds the bug; this one decides which layer the fix belongs in.
 
 ## Fires when
 

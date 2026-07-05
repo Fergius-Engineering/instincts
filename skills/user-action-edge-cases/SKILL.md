@@ -1,6 +1,6 @@
 ---
 name: user-action-edge-cases
-description: Use before finishing anything that depends on external state a person controls - a file, an asset, a record. Walk through what happens if they rename it, move it, delete it, or duplicate it.
+description: Use when finishing anything that depends on external state a person controls - a file, a record, a folder.
 ---
 
 ## The rule
@@ -9,7 +9,7 @@ Anything you depend on that a user can touch will get renamed, moved, deleted, a
 
 ## Fires when
 
-Your code reads, writes, or depends on a file, an asset, a record, or any state the user can edit outside your code.
+Your code reads, writes, or depends on a file, a record, a document, or any state the user can edit outside your code.
 
 ## How to apply
 

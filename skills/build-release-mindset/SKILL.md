@@ -1,6 +1,6 @@
 ---
 name: build-release-mindset
-description: Use when touching build scripts, releases, or CI - think like a build engineer, not a developer patching a bug. A build that depends on whatever was left on the machine last time is unreliable by definition.
+description: Use when touching build scripts, release or packaging steps, publish flows, or CI config.
 ---
 
 ## The rule
@@ -13,11 +13,16 @@ Editing a build script, a release or packaging step, a publish flow, or CI confi
 
 ## How to apply
 
-Start from a guaranteed clean state — remove stale artifacts, intermediates, and any patched config before you begin. Smoke-test the smallest case first and abort fast if it fails; don't run the full matrix on a setup you haven't proven. Version artifacts into timestamped outputs instead of overwriting, so rollback is trivial. Validate outputs, not just inputs: check sizes, counts, and versions, because a silently-empty or zero-test artifact is the worst failure mode and the easiest to miss. Protect any global state you patch-and-restore with a lock so a half-finished run doesn't leave the machine broken. Know the rollback before you ship.
+- Start from a guaranteed clean state: remove stale artifacts and intermediates, restore any patched config, before you begin.
+- Smoke-test the smallest case first and abort fast if it fails; don't run the full matrix on a setup you haven't proven.
+- Version artifacts into timestamped outputs instead of overwriting, so rollback is trivial.
+- Validate outputs, not just inputs. A silently-empty artifact, or a "0 tests passed" nobody asserted on, is the worst failure mode and the easiest to miss.
+- Protect any global state you patch-and-restore with a lock, so a half-finished run doesn't leave the machine broken.
+- Know the rollback before you ship.
 
 ## Worked example
 
-A release script builds eight engine versions over an hour, then you discover version one was broken from the start — the whole hour is wasted. A canary fixes it: build the smallest version first, and abort the run if it fails, so a broken setup costs two minutes instead of sixty. The same instinct catches a "0 tests passed" that would otherwise ship green because nobody asserted the count was above zero — a loud failure is always better than a silent bad artifact.
+A release script builds against eight SDK versions over an hour, then you discover the first one was broken from the start — the whole hour is wasted. A canary fixes it: build the smallest target first, and abort the run if it fails, so a broken setup costs two minutes instead of sixty. The same instinct catches a "0 tests passed" that would otherwise ship green because nobody asserted the count was above zero — a loud failure is always better than a silent bad artifact.
 
 ## Red flags
 

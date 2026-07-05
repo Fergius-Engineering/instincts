@@ -1,11 +1,15 @@
 ---
 name: de-ai-prose
-description: Use before showing any prose a human will read - docs, README, commit bodies, UI copy, store text. Run a read-back pass and cut the tells that make writing sound machine-generated, so it reads like a person wrote it.
+description: Use when about to show any prose a human will read - docs, README, commit bodies, UI copy, store text.
 ---
 
 ## The rule
 
 Readers can tell when a machine wrote the text, and it costs trust the same way sloppy code does. After you write any prose a person will read, read it back once and cut the tells. Plain words, varied sentences, say the thing instead of announcing you're about to say it.
+
+## Fires when
+
+About to show a human a README, a doc page, a commit or PR body, a changelog entry, a UI string, store copy — anything a person will read as writing rather than run as code.
 
 ## Tells to cut
 
@@ -37,6 +41,14 @@ After (human):
 > The cache keeps reads under a millisecond. It's a plain in-memory map with a TTL, nothing clever.
 
 What changed: dropped the signpost, dropped the triad, dropped the rhetorical question, said the concrete thing.
+
+## Red flags
+
+| Thought | Reality |
+|---|---|
+| "It's just a commit message" | A commit body is prose someone will read. Same pass. |
+| "The user asked for polish" | Polish means clear, not machine-shiny. |
+| "A table makes this clearer" | Sometimes. A table for everything is a tell. |
 
 ---
 

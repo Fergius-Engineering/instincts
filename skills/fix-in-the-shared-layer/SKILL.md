@@ -1,11 +1,13 @@
 ---
 name: fix-in-the-shared-layer
-description: Use when you hit a bug while building on your own shared code - a library, base class, SDK, or component. Fix it in the shared layer so every other caller inherits the fix, instead of patching around it in the one spot that surfaced it.
+description: Use when a bug surfaces while building on one's own shared code - a library, base class, SDK, or component.
 ---
 
 ## The rule
 
 A bug you hit while using your own shared code is almost never a one-off. It's a gap in the shared layer, and every other caller has it too, they just haven't tripped it yet. Fix it where it lives so the fix is inherited everywhere, instead of working around it in the one place you happened to notice.
+
+This is a different move than fix-the-root-cause. That rule picks the causal layer of a bad state; this one is about ownership: when the gap is in code you share, fix it there so every caller inherits the fix.
 
 ## Fires when
 
@@ -19,7 +21,7 @@ A workaround at your call site leaves the trap armed for the next person.
 
 ## Worked example
 
-Building the invoices screen, you find your shared date-format helper crashes on a null date. The quick patch is a null check on the invoices screen. But the reports screen and the dashboard call the same helper and will crash the same way. Fixing the helper to handle null fixes all three at once, and stops the next screen from ever hitting it. The local patch would have left two known crashes waiting to be found.
+Building the invoices screen, you see due dates render a day early for users east of UTC. The cause is your shared date-format helper: it silently converts to UTC before formatting. The tempting patch is to shift the date back on the invoices screen. But the reports screen and the CSV export call the same helper, so they're quietly wrong too — nobody has noticed yet. Fixing the helper to format in the user's timezone repairs all three at once. The step that matters afterwards: re-read the other two callers, because one of them may have built its own compensation on top of the old behavior. The local shift would have "fixed" one screen and left the rest of the product lying.
 
 ## Red flags
 

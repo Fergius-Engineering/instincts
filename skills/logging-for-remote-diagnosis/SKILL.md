@@ -1,6 +1,6 @@
 ---
 name: logging-for-remote-diagnosis
-description: Use while building any mechanic that could fail on a machine you can't reach - a shipped product, a CLI a user runs, a server. Instrument it as you write it so that one verbose log dump from a stranger is enough to reconstruct what happened.
+description: Use when building any mechanic that could fail on a machine out of reach - a shipped product, a CLI a user runs, a server.
 ---
 
 ## The rule

@@ -1,6 +1,6 @@
 ---
 name: entry-point-audit
-description: Use before adding any cross-cutting change - a new gate, limit, permission check, or rule that must apply everywhere. Find ALL the places the action can happen first, not just the obvious one in front of you.
+description: Use when adding any cross-cutting change - a new gate, limit, permission check, or rule that must apply everywhere.
 ---
 
 ## The rule
@@ -13,7 +13,7 @@ Adding a limit or quota, an auth or permission check, a feature flag or gate, in
 
 ## How to apply
 
-Grep the codebase for the action itself — the function, the event, the command — not just the one caller you're looking at. Assume two or three entry points exist, not one. Apply the change to every one of them. Then search again to confirm none are left.
+Grep the codebase for the action itself, not just the caller you're looking at: the function, the event, the command. Assume two or three entry points exist, not one. Apply the change to every one of them. Then search again to confirm none are left.
 
 ## Worked example
 

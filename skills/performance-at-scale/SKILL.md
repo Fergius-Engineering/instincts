@@ -1,11 +1,11 @@
 ---
 name: performance-at-scale
-description: Use when writing code on a hot path - a thing that runs per item, per frame, or per event meets your data at full scale in production, not at the three rows in your test. Design for the largest realistic input from the start.
+description: Use when writing code that runs per item, per frame, or per event, or building a cache or lookup over a collection that can grow large.
 ---
 
 ## The rule
 
-Code that runs once per item, per frame, or per event meets your data at production scale, not at the handful of rows in your test fixture. A linear scan that's instant on ten items freezes the UI on a hundred thousand. The cost is invisible in the test and brutal in the field. Design the hot path for the largest realistic input before you write it, not after a user reports a freeze.
+Hot-path code meets your data at production scale, not at the handful of rows in your test fixture. A linear scan that's instant on ten items freezes the UI on a hundred thousand. The cost is invisible in the test and brutal in the field. Design the hot path for the largest realistic input before you write it, not after a user reports a freeze.
 
 ## Fires when
 
@@ -13,7 +13,7 @@ Writing code that runs per item, per frame, or per event. Building a cache or a 
 
 ## How to apply
 
-Before writing data-path code, ask "does this hold at a million items?"
+Before writing data-path code, ask "does this hold at the largest realistic input?"
 
 Use O(1) lookups with an early exit — a map keyed by the thing you're asking about, so 99% of queries return immediately. Prefer incremental point updates (remove one, add one) over rebuilding the whole structure. Keep allocations and copies out of tight loops. Verbose logging in a hot loop is fine, but only after the early exit, never before it.
 
