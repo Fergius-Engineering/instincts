@@ -2,5 +2,7 @@
 Thumbs.db
 *.log
 
-# internal working docs — spec and plans stay local, not part of the public plugin
-docs/
+# internal working docs — specs and plans stay local, not part of the public plugin.
+# expectations.md is the exception: it's the public bar the README points to.
+docs/*
+!docs/expectations.md

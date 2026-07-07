@@ -15,6 +15,8 @@ While writing any branch, early return, skip, or async/deferred step in code tha
 
 Log the entry of each path, every branch and skip with the deciding condition, key values and counts, and the chosen outcome. Use a greppable tag prefix (e.g. `[Dispatch]`, `[Sync]`) so the dump is filterable.
 
+Key values means ids, sizes, counts, and reasons — not payloads. Credentials and tokens never go in a log line, and personal data is payload too: log the user id, not the email. The dump you're designing for gets read on screens you don't control and forwarded around.
+
 For async or deferred work, log at schedule time and at execution time. They're different moments and either can be the bug.
 
 Before calling it done, reread each branch and ask: "from the verbose dump alone, could I tell this branch was taken and why?"
@@ -34,3 +36,4 @@ A file-sync tool skips some files and a user reports "it just ignored half my fo
 | "I'll add logs if it turns out to be buggy" | You get one shot at a stranger's log. Add them now. |
 | "No log line for that path, so it didn't run" | Or the level was off. Verify emission, don't infer from silence. |
 | "This branch is obvious, it doesn't need a log" | Obvious to you, invisible in a dump from someone else. |
+| "The email makes the log easier to read" | It also makes the dump a PII leak. Log the id, look the rest up. |

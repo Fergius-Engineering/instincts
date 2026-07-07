@@ -9,11 +9,13 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 PLUGIN_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 
-# Read using-instincts content
-using_instincts_content=$(cat "${PLUGIN_ROOT}/skills/using-instincts/SKILL.md" 2>&1 || echo "Error reading using-instincts skill")
+# Read using-instincts content, dropping the YAML frontmatter - it means
+# nothing inside an injection and only spends tokens.
+using_instincts_content=$(awk 'NR==1 && /^---$/ {fm=1; next} fm && /^---$/ {fm=0; next} !fm' "${PLUGIN_ROOT}/skills/using-instincts/SKILL.md" 2>/dev/null || echo "Error reading using-instincts skill")
 
 # Escape string for JSON embedding using bash parameter substitution.
-# Each ${s//old/new} is a single C-level pass.
+# Each ${s//old/new} is a single C-level pass. Covers the JSON escapes a
+# markdown file can realistically carry; \v has no short JSON escape and becomes \u000b.
 escape_for_json() {
     local s="$1"
     s="${s//\\/\\\\}"
@@ -21,14 +23,31 @@ escape_for_json() {
     s="${s//$'\n'/\\n}"
     s="${s//$'\r'/\\r}"
     s="${s//$'\t'/\\t}"
+    s="${s//$'\f'/\\f}"
+    s="${s//$'\b'/\\b}"
+    s="${s//$'\v'/\\u000b}"
     printf '%s' "$s"
 }
 
-using_instincts_escaped=$(escape_for_json "$using_instincts_content")
+primer="The instincts layer is installed. It tunes a set of working reflexes on top of your normal process: verify claims against the source instead of memory, build for failures you can't reproduce, look wider than the line in front of you, design for real conditions rather than the happy path, and finish honestly. When one of these applies to what you're about to do, load the matching skill with the Skill tool before you act - the first time it applies in the session - and announce it. A loaded skill stays active for the rest of the session; applying a reflex you never loaded this session does not count. The full rule and the map are in the 'instincts:using-instincts' skill below; each skill is loadable on its own with the Skill tool."
 
-primer="The instincts layer is installed. It tunes a set of working reflexes on top of your normal process: verify claims against the source instead of memory, build for failures you can't reproduce, look wider than the line in front of you, design for real conditions rather than the happy path, and finish honestly. When one of these applies to what you're about to do, you MUST load the matching skill with the Skill tool BEFORE you act and announce it — applying the principle from memory without loading the skill does not count and cuts corners. These skills are not exempt from the invoke-the-skill discipline. The full map and the rule are in the 'instincts:using-instincts' skill below; each skill is loadable on its own with the Skill tool."
+# One-time superpowers pairing question. It lives here, not in the skill,
+# so it stops costing tokens once it's been answered on this machine.
+onboarding=""
+if [ ! -f "${HOME:-}/.instincts/asked" ]; then
+  onboarding="
 
-session_context="<IMPORTANT>\n${primer}\n\n${using_instincts_escaped}\n</IMPORTANT>"
+One-time setup note: instincts is designed to sit on top of superpowers, the process layer, installed separately. If the superpowers skills are already available in this session, ignore this note entirely. Otherwise ask the user once: instincts runs best on top of superpowers ('/plugin marketplace add obra/superpowers', then '/plugin install superpowers') - want the base too, or run instincts standalone? When they answer, write the empty marker file ~/.instincts/asked and mention it in one short line, skipping the write if they'd rather you didn't - the marker is what stops this question repeating. Standalone is fully supported."
+fi
+
+# Assemble the payload raw, with real newlines, then escape the whole thing
+# once. Escaping fragments and pasting them into a pre-escaped template is
+# how a future quote in the primer breaks every harness at once.
+session_context=$(escape_for_json "<IMPORTANT>
+${primer}
+
+${using_instincts_content}${onboarding}
+</IMPORTANT>")
 
 # Output context injection as JSON.
 # Cursor hooks expect additional_context (snake_case).

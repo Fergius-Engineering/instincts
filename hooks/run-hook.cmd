@@ -10,6 +10,8 @@ REM prepends "bash" to any command containing .sh -- doesn't interfere.
 REM
 REM Usage: run-hook.cmd <script-name> [args...]
 
+setlocal EnableDelayedExpansion
+
 if "%~1"=="" (
     echo run-hook.cmd: missing script name >&2
     exit /b 1
@@ -17,25 +19,29 @@ if "%~1"=="" (
 
 set "HOOK_DIR=%~dp0"
 
-REM Try Git for Windows bash in standard locations
+REM Try Git for Windows bash in standard locations.
+REM !ERRORLEVEL! (delayed expansion) is required inside the if-blocks:
+REM %ERRORLEVEL% expands when the block is parsed, before bash even runs,
+REM and would return a stale value - a failing hook would read as success.
 if exist "C:\Program Files\Git\bin\bash.exe" (
     "C:\Program Files\Git\bin\bash.exe" "%HOOK_DIR%%~1" %2 %3 %4 %5 %6 %7 %8 %9
-    exit /b %ERRORLEVEL%
+    exit /b !ERRORLEVEL!
 )
 if exist "C:\Program Files (x86)\Git\bin\bash.exe" (
     "C:\Program Files (x86)\Git\bin\bash.exe" "%HOOK_DIR%%~1" %2 %3 %4 %5 %6 %7 %8 %9
-    exit /b %ERRORLEVEL%
+    exit /b !ERRORLEVEL!
 )
 
 REM Try bash on PATH (e.g. user-installed Git Bash, MSYS2, Cygwin)
 where bash >nul 2>nul
 if %ERRORLEVEL% equ 0 (
     bash "%HOOK_DIR%%~1" %2 %3 %4 %5 %6 %7 %8 %9
-    exit /b %ERRORLEVEL%
+    exit /b !ERRORLEVEL!
 )
 
-REM No bash found - exit silently rather than error
+REM No bash found - don't fail the session, but leave a trace in stderr
 REM (plugin still works, just without SessionStart context injection)
+echo run-hook.cmd: bash not found, hook skipped. Windows needs Git Bash - see README known limitations. >&2
 exit /b 0
 CMDBLOCK
 

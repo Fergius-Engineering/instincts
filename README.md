@@ -28,7 +28,7 @@ For you if you already run Claude Code (or another agent) on real work and want 
 
 Especially if you ship to other people (a product, a library, a service) and "works on my machine" or "looks done" isn't good enough.
 
-Not for you yet if you haven't installed superpowers. This is a layer on top. Start with superpowers, then come back.
+Best on top of superpowers — that's the intended setup and the order that makes sense. It works standalone too; you get the reflexes without the process layer around them.
 
 ## What it is not
 
@@ -53,7 +53,7 @@ Where both could fire, treat instincts as the finer pass on top of the superpowe
 
 ## Status and what it costs
 
-In development, at v0.6.0 with nineteen skills. Still early.
+In development, at v0.7.0 with nineteen skills. Still early. The bar we hold it to is written down in [docs/expectations.md](docs/expectations.md) — every audit checks the plugin against that list.
 
 The rules come from one real production project. Sample size is one. They've caught real bugs and real false claims there, but nobody yet knows which ones generalize perfectly. They will change.
 
@@ -66,7 +66,7 @@ Where this is thin, said plainly, so you decide with eyes open.
 - n=1, and no numbers yet. The rules come from one production project. We don't have a clean "+X% tokens, -Y% rework" figure or a reproducible eval across many projects. We know that's exactly what this needs, and the plan is to measure it properly rather than invent a number that sounds good. Until then, treat the benefit as a reasoned bet, not a measured fact, and if you want a number, measure it on your own work.
 - English only. The skills are written in English and tuned for English prompts. On other languages they may fire less reliably.
 - Not tested across every model. Built and used on the larger Claude models. On smaller or older ones the behavior may degrade.
-- On Windows, activation needs bash. The SessionStart hook runs through bash (Git Bash). With no bash on PATH it exits quietly, so the agent just won't get the startup nudge, and nothing tells you. The skills still work if the agent reaches for them by description; only the automatic reminder is lost.
+- On Windows, activation needs bash. The SessionStart hook runs through bash (Git Bash). With no bash on PATH it skips quietly — one note lands in the hook's stderr, visible in debug logs, but the session itself won't tell you. The skills still work if the agent reaches for them by description; only the automatic reminder is lost.
 - Instructions, not enforcement. These are rules the agent follows, not code that forces anything. Reliability is the model's compliance, not a guarantee.
 - Installed as a set. You get all nineteen, not a pick-list. You can ignore or stop using any one, but there's no per-skill install today.
 
@@ -74,7 +74,7 @@ Where this is thin, said plainly, so you decide with eyes open.
 
 Each skill is a plain markdown file. The agent reads the relevant one when it's relevant and follows it. No black box. You can read every rule in this repo before you install it.
 
-There's also one small SessionStart hook: a shell script that runs at the start of each session and reminds the agent that the instincts are available and what each one is for. That's what makes the agent reach for them without you having to ask. It only injects text into the session. It doesn't read or change your code, and you can read the script in `hooks/`.
+There's also one small SessionStart hook: a shell script that runs at session start — and again after `/clear` or a context compaction — and injects the entry skill itself: the rule plus the map of all nineteen reflexes. That's what makes the agent reach for them without you having to ask. On a machine's first sessions it also carries a one-time setup question, until it's been answered once. It only injects text into the session. It doesn't read or change your code, and you can read the script in `hooks/`.
 
 ## Install
 
