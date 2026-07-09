@@ -19,6 +19,7 @@ About to show a human a README, a doc page, a commit or PR body, a changelog ent
 - Parallel triads everywhere ("a texture, a config, a script"), over-balanced sentences, the list-of-three cadence.
 - Arrow constructions in prose ("write one function -> the whole thing appears").
 - A table for everything; bold sprinkled on every other phrase as decoration.
+- Bullet lists where every item opens with a bold label ("**Fast:** ...", "**Simple:** ..."), parallel from top to bottom.
 - Cutesy section names and peppy filler ("the payoff", "the ones that bite").
 - Paragraphs that are all the same length and shape. Too tidy.
 
@@ -26,7 +27,7 @@ About to show a human a README, a doc page, a commit or PR body, a changelog ent
 
 Plain, varied sentences. Some short. Let one run long and a little uneven, like a person typing.
 
-Say it directly instead of signposting it. Use em-dashes rarely. Prefer periods, commas, "and". Vary connectors.
+Say it directly instead of signposting it. Use em-dashes rarely. Prefer periods, commas, "and". Vary connectors. Cutting an em-dash means rebuilding the sentence (a comma, a colon, parentheses, or two sentences), not swapping a different mark into the same joint.
 
 Keep bold for genuinely key terms, not decoration. Drop a table where a sentence reads more naturally.
 
