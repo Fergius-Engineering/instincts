@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# PreToolUse hook. Fires only on commands that move work off this machine
+# (commit, push, PR) and points at independent-review-gate. Never blocks.
+#
+# It's a hook and not skill text because the text was measured: the gate loaded
+# on 2 of 47 real sessions that committed code, and widening its trigger
+# wording changed nothing in an A/B.
+
+set -euo pipefail
+
+payload="$(cat)"
+
+# No jq dependency. The matcher is Bash/PowerShell, so the payload is a command
+# invocation - matching the raw JSON is good enough for a reminder that can only
+# ever add one line, and can never block.
+case "$payload" in
+    *"git commit"*|*"git push"*|*"gh pr create"*) ;;
+    *) exit 0 ;;
+esac
+
+read -r -d '' line <<'TXT' || true
+Work is about to leave this machine. If you would call it done and instincts:independent-review-gate is not loaded this session, load it before this lands. It does not override an explicit instruction to commit or push.
+TXT
+
+printf '{"hookSpecificOutput":{"hookEventName":"PreToolUse","additionalContext":"%s"}}\n' "$line"

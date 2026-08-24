@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.9.0 — 2026-08-25
+
+- First measurement of the layer in real use, written up in [evals/2026-08-live-sessions.md](evals/2026-08-live-sessions.md): 545 live sessions carrying the injected payload, 53,885 assistant turns, one developer, one target model. `claude plugin eval` would have been the tidier instrument but it is behind early access on this account, and transcripts answer the harder question anyway, since the whole point is what happens three hours into a real problem.
+- Two things came out confirmed. The turnstile fires and keeps firing as sessions get longer — 10% of sessions under ten turns, 56% between a hundred and three hundred, and all 43 of the sessions past three hundred turns. And the sticky rule holds exactly: zero repeat loads of the same skill in 176 sessions, against nine to eleven per task before 0.7.0.
+- The announcement clause is gone. Of 400 loads, 346 carried no trace of one and only 25 named the skill; six sessions read by hand show the same shape every time, a plain sentence about what is being done and then the Skill call. The Skill call is already the visible trace, and an English skill id inside a sentence in another language reads as noise. Keeping the rule would have meant paying payload for a ceremony that seven loads in eight skip. Injected payload is now 897 words, down from 906.
+- New hook, and the first change in three releases that moved behavior. `independent-review-gate` was loading on 2 of 47 live sessions that committed real code work, and 59 of 63 committing sessions had no review of any kind — not the instinct, not a superpowers review skill, not a subagent. Median session in that set: 33 file edits, 359 turns. Since the 0.8.0 A/B had already shown that widening a trigger's wording moves nothing, this one is a mechanism instead. A PreToolUse hook watches for `git commit`, `git push` and `gh pr create`, injects a single sentence pointing at the gate, never blocks, and says outright that it does not override an instruction to commit. On a repo with five files of finished work: the gate loaded in 1 of 8 runs without the hook and 4 of 5 with it — 4 of 4 counting only the runs where a commit command actually ran.
+- New expectation E21 for that moment, with the pre-hook number recorded next to it so the next audit can tell whether this held.
+- What the numbers do not say, stated in the eval and in the README: nothing here shows the reflexes make the work better. There was no arm without the plugin. That comparison is still owed.
+
 ## 0.8.0 — 2026-08-24
 
 - The two-month review of the working journal. Eighteen candidate instincts had accumulated since June. Every one of them that implied a change to a skill was written, tested against a no-guidance control, and reverted. No skill text changed in this release, and that is the finding rather than a shortfall.

@@ -7,7 +7,7 @@ superpowers is the base process: brainstorm, spec, plan, TDD, verify. instincts 
 
 ## The rule
 
-Load an instinct with the Skill tool the **first time it applies in a session** — before you act on it. Announce "Using [instinct] to …" and follow the skill you loaded. If several instincts hit the same move, load them all in one response.
+Load an instinct with the Skill tool the **first time it applies in a session** — before you act on it, then follow the skill you loaded. If several instincts hit the same move, load them all in one response.
 
 Once loaded, a skill stays active for the rest of the session: apply it without re-invoking. One exception — after a context compact, if you can no longer see the skill's full text, it's gone; reload it before relying on it.
 

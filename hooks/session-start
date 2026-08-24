@@ -29,7 +29,7 @@ escape_for_json() {
     printf '%s' "$s"
 }
 
-primer="The instincts layer is installed. It tunes a set of working reflexes on top of your normal process: verify claims against the source instead of memory, build for failures you can't reproduce, look wider than the line in front of you, design for real conditions rather than the happy path, and finish honestly. When one of these applies to what you're about to do, load the matching skill with the Skill tool before you act - the first time it applies in the session - and announce it. A loaded skill stays active for the rest of the session; applying a reflex you never loaded this session does not count. The full rule and the map are in the 'instincts:using-instincts' skill below; each skill is loadable on its own with the Skill tool."
+primer="The instincts layer is installed. It tunes a set of working reflexes on top of your normal process: verify claims against the source instead of memory, build for failures you can't reproduce, look wider than the line in front of you, design for real conditions rather than the happy path, and finish honestly. When one of these applies to what you're about to do, load the matching skill with the Skill tool before you act - the first time it applies in the session. A loaded skill stays active for the rest of the session; applying a reflex you never loaded this session does not count. The full rule and the map are in the 'instincts:using-instincts' skill below; each skill is loadable on its own with the Skill tool."
 
 # One-time superpowers pairing question. It lives here, not in the skill,
 # so it stops costing tokens once it's been answered on this machine.

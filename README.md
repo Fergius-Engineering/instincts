@@ -53,7 +53,9 @@ Where both could fire, treat instincts as the finer pass on top of the superpowe
 
 ## Status and what it costs
 
-In development, at v0.8.0 with nineteen skills. Still early. The bar we hold it to is written down in [docs/expectations.md](docs/expectations.md) — every audit checks the plugin against that list, and the same file says which parts of the bar we have not managed to measure yet. The August 2026 review tested five candidate rules and shipped none of them: on a fresh context with one task in it, a frontier model already did what they said. Rules land here when a control run shows they change something.
+In development, at v0.9.0 with nineteen skills. Still early. The bar we hold it to is written down in [docs/expectations.md](docs/expectations.md) — every audit checks the plugin against that list, and the same file says which parts of the bar we have not managed to measure yet. Rules land here when a control run shows they change something: the August 2026 review tested five candidate rules and shipped none of them, because on a fresh context with one task in it a frontier model already did what they said.
+
+There are numbers now, from 545 live sessions rather than from authored test cases: [evals/2026-08-live-sessions.md](evals/2026-08-live-sessions.md). They say the turnstile fires and scales with session length, the sticky rule holds exactly, one rule was ceremony and got cut, and the review gate was firing on one commit in twenty-five until a hook fixed it. They do not say the reflexes make the work better — that needs a comparison arm this corpus cannot provide, and the README will keep saying so until it exists.
 
 The rules come from one real production project. Sample size is one. They've caught real bugs and real false claims there, but nobody yet knows which ones generalize perfectly. They will change.
 
@@ -66,7 +68,7 @@ Where this is thin, said plainly, so you decide with eyes open.
 - n=1, and no numbers yet. The rules come from one production project. We don't have a clean "+X% tokens, -Y% rework" figure or a reproducible eval across many projects. We know that's exactly what this needs, and the plan is to measure it properly rather than invent a number that sounds good. Until then, treat the benefit as a reasoned bet, not a measured fact, and if you want a number, measure it on your own work.
 - English only. The skills are written in English and tuned for English prompts. On other languages they may fire less reliably.
 - Not tested across every model. Built and used on the larger Claude models. On smaller or older ones the behavior may degrade.
-- On Windows, activation needs bash. The SessionStart hook runs through bash (Git Bash). With no bash on PATH it skips quietly — one note lands in the hook's stderr, visible in debug logs, but the session itself won't tell you. The skills still work if the agent reaches for them by description; only the automatic reminder is lost.
+- On Windows, activation needs bash. Both hooks run through bash (Git Bash). With no bash on PATH they skip quietly — one note lands in the hook's stderr, visible in debug logs, but the session itself won't tell you. The skills still work if the agent reaches for them by description; what's lost is the automatic reminder at session start and the nudge before a commit.
 - Instructions, not enforcement. These are rules the agent follows, not code that forces anything. Reliability is the model's compliance, not a guarantee.
 - Installed as a set. You get all nineteen, not a pick-list. You can ignore or stop using any one, but there's no per-skill install today.
 
@@ -74,7 +76,11 @@ Where this is thin, said plainly, so you decide with eyes open.
 
 Each skill is a plain markdown file. The agent reads the relevant one when it's relevant and follows it. No black box. You can read every rule in this repo before you install it.
 
-There's also one small SessionStart hook: a shell script that runs at session start — and again after `/clear` or a context compaction — and injects the entry skill itself: the rule plus the map of all nineteen reflexes. That's what makes the agent reach for them without you having to ask. On a machine's first sessions it also carries a one-time setup question, until it's been answered once. It only injects text into the session. It doesn't read or change your code, and you can read the script in `hooks/`.
+There are also two small hooks, both shell scripts you can read in `hooks/`. Neither one reads or changes your code; all they do is put text into the session.
+
+The first runs at session start — and again after `/clear` or a context compaction — and injects the entry skill: the rule plus the map of all nineteen reflexes. That's what makes the agent reach for them without you having to ask. On a machine's first sessions it also carries a one-time setup question, until it's been answered once.
+
+The second runs before a shell command and stays silent unless that command is a `git commit`, a `git push` or a `gh pr create`. Then it adds one sentence pointing at the review gate. It never blocks the command and never argues with you: if you asked for the commit, the commit happens. It exists because measurement said the gate was being walked past on twenty-four commits in twenty-five, and no wording of the skill itself had moved that.
 
 ## Install
 

@@ -12,7 +12,7 @@ Each entry is written to be checkable — from a transcript, from the repo, or b
 
 ## Turnstile
 
-- **E4.** When an instinct applies to the move at hand, the agent loads it with the Skill tool and announces it — before acting on it, the first time it applies in the session.
+- **E4.** When an instinct applies to the move at hand, the agent loads it with the Skill tool before acting on it, the first time it applies in the session. The Skill call is the trace; no spoken announcement is required. (0.9.0 cut the announcement half of this rule: across 545 live sessions, 346 of 400 loads carried no trace of it and nothing depended on one.)
 - **E5.** Loads are sticky. Once loaded, the skill stays active for the rest of the session with no repeat ritual. After a compact that dropped the skill's text, the agent reloads it before relying on it.
 - **E6.** The layer never demands per-occurrence loads. A typical task costs at most one load per applicable skill; a rule that requires six or more loads to be followed honestly is a broken rule, not a strict one.
 - **E7.** No instinct is acted on from memory or from the map line alone. If the agent names an instinct, there is a Skill call for it in this session's transcript.
@@ -41,6 +41,7 @@ Each entry is written to be checkable — from a transcript, from the repo, or b
 ## Scope
 
 - **E20.** The instincts are about the work, not about the file extension. A claim inside a status report, a rule that has to hold across a set of documents, a plan for a prose rewrite — each loads the same skill a code change would. No trigger narrows to code-only.
+- **E21.** When a command is about to move work off this machine — a commit, a push, a PR — `independent-review-gate` has either been loaded this session or the agent has said why the work does not need it. Checkable from a transcript. Measured before the 0.9.0 hook: 2 of 47 live sessions that committed real code work.
 
 ## What we have not measured
 
