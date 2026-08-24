@@ -17,6 +17,11 @@ numbers below are all the analysis produced.
 The miner reads each transcript for Skill calls, tool calls, file paths and hook injections. It was
 checked against a session whose behavior was known by hand before trusting it on the rest.
 
+You can run it on your own sessions: `python evals/tools/measure-live-sessions.py`. It reads
+`~/.claude/projects` by default, writes nothing, and prints the same aggregates as below. Expect small
+drift against the numbers here — a corpus grows while you work, and these are a snapshot from
+2026-08-25.
+
 ## The turnstile fires, and it holds up as sessions get long
 
 | Session length | sessions | with at least one instinct loaded |

@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.9.1 — 2026-08-25
+
+- Published the script behind the 0.9.0 numbers: `evals/tools/measure-live-sessions.py`. It reads your own session transcripts, writes nothing, sends nothing anywhere, and prints the same aggregates the write-up quotes. An eval nobody else can rerun is a claim rather than evidence, and this repo has been arguing the opposite for three releases.
+
 ## 0.9.0 — 2026-08-25
 
 - First measurement of the layer in real use, written up in [evals/2026-08-live-sessions.md](evals/2026-08-live-sessions.md): 545 live sessions carrying the injected payload, 53,885 assistant turns, one developer, one target model. `claude plugin eval` would have been the tidier instrument but it is behind early access on this account, and transcripts answer the harder question anyway, since the whole point is what happens three hours into a real problem.
