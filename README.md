@@ -53,7 +53,7 @@ Where both could fire, treat instincts as the finer pass on top of the superpowe
 
 ## Status and what it costs
 
-In development, at v0.7.0 with nineteen skills. Still early. The bar we hold it to is written down in [docs/expectations.md](docs/expectations.md) — every audit checks the plugin against that list.
+In development, at v0.8.0 with nineteen skills. Still early. The bar we hold it to is written down in [docs/expectations.md](docs/expectations.md) — every audit checks the plugin against that list, and the same file says which parts of the bar we have not managed to measure yet. The August 2026 review tested five candidate rules and shipped none of them: on a fresh context with one task in it, a frontier model already did what they said. Rules land here when a control run shows they change something.
 
 The rules come from one real production project. Sample size is one. They've caught real bugs and real false claims there, but nobody yet knows which ones generalize perfectly. They will change.
 

@@ -37,3 +37,11 @@ Each entry is written to be checkable — from a transcript, from the repo, or b
 - **E17.** README claims match the implementation exactly — hook events, payload behavior, the standalone story. Drift between the README and the code is a bug of the same rank as a code bug.
 - **E18.** No manufactured numbers, no staged endorsements. n=1 is stated plainly until a real eval exists.
 - **E19.** `plugin.json` and `marketplace.json` versions always match, and every release bumps them together with a CHANGELOG entry.
+
+## Scope
+
+- **E20.** The instincts are about the work, not about the file extension. A claim inside a status report, a rule that has to hold across a set of documents, a plan for a prose rewrite — each loads the same skill a code change would. No trigger narrows to code-only.
+
+## What we have not measured
+
+The reflexes here are meant for long sessions where a check competes with a dozen other goals. Our test harness runs a fresh context with one task in it, and at that size a frontier model does most of this unprompted — measured in August 2026 across five candidate rules and twenty-six runs, all of which we dropped rather than ship. So a rule surviving in this repo means it has not been shown to be redundant, not that it has been shown to help. Settling that needs live sessions, which is the eval we still owe.
