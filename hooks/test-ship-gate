@@ -1,0 +1,78 @@
+#!/usr/bin/env bash
+# Checks for the ship-gate hook. Run it after touching that file:
+#
+#     bash hooks/test-ship-gate
+#
+# The last case removes the escaping and expects broken output. If that one
+# ever passes, the test stopped testing anything.
+
+set -uo pipefail
+
+HERE="$(cd "$(dirname "$0")" && pwd)"
+HOOK="${HERE}/ship-gate"
+TMP="$(mktemp -d)"
+trap 'rm -rf "${TMP}"' EXIT
+
+fails=0
+
+valid_json() { python3 -c 'import json,sys; json.load(sys.stdin)' 2>/dev/null || python -c 'import json,sys; json.load(sys.stdin)' 2>/dev/null; }
+
+check() {
+    local name="$1" cmd="$2" want="$3" out
+    out="$(printf '{"tool_input":{"command":"%s"}}' "$cmd" | bash "${HOOK}")"
+    if [ "$want" = "fires" ]; then
+        if [ -n "$out" ] && printf '%s' "$out" | valid_json; then
+            echo "ok    ${name}"
+        else
+            echo "FAIL  ${name}: expected valid JSON, got: ${out:0:80}"
+            fails=$((fails + 1))
+        fi
+    else
+        if [ -z "$out" ]; then
+            echo "ok    ${name}"
+        else
+            echo "FAIL  ${name}: expected silence, got: ${out:0:80}"
+            fails=$((fails + 1))
+        fi
+    fi
+}
+
+check "commit fires"           "git commit -m x"          fires
+check "push fires"             "git push origin main"     fires
+check "pr create fires"        "gh pr create --title x"   fires
+check "unrelated stays quiet"  "ls -la"                   quiet
+check "status stays quiet"     "git status --short"       quiet
+
+# no command field at all
+if [ -z "$(printf '{"tool_input":{"file_path":"x.md"}}' | bash "${HOOK}")" ]; then
+    echo "ok    no command field stays quiet"
+else
+    echo "FAIL  no command field should stay quiet"
+    fails=$((fails + 1))
+fi
+
+# a quote in the sentence must not break the JSON.
+# Only the sentence gets swapped - the escaping lines start with line="${ and
+# must survive, or the control below stops meaning anything.
+awk '/^line="[^$]/ && !seen { print "line=\"say \\\"done\\\", then a backslash \\\\ and stop\""; seen=1; next } { print }' "${HOOK}" > "${TMP}/with"
+if printf '{"tool_input":{"command":"git commit"}}' | bash "${TMP}/with" | valid_json; then
+    echo "ok    quotes and backslashes survive escaping"
+else
+    echo "FAIL  a quote in the sentence breaks the JSON"
+    fails=$((fails + 1))
+fi
+
+# control: strip the escaping, the same text must now break
+grep -v '^line="${line//' "${TMP}/with" > "${TMP}/without"
+if printf '{"tool_input":{"command":"git commit"}}' | bash "${TMP}/without" | valid_json; then
+    echo "FAIL  control passed - the escaping test proves nothing"
+    fails=$((fails + 1))
+else
+    echo "ok    control breaks without the escaping"
+fi
+
+if [ "$fails" -gt 0 ]; then
+    echo "${fails} failed"
+    exit 1
+fi
+echo "all good"

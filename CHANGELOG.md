@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.9.2 — 2026-08-25
+
+- Fixed a latent break in `hooks/ship-gate` that an independent review caught: the injected sentence went straight into the JSON with no escaping, so the first person to put a quote in that wording would have shipped a malformed payload, silently. It escapes now, and `hooks/test-ship-gate` covers it with a control run that strips the escaping and expects the break — a check that cannot fail is not a check.
+- Documented what the matcher does not do. It reads the command field and matches the phrase, so a command that merely mentions a commit, like a heredoc writing "remember to git commit later" into a file, gets the nudge too. One extra sentence that cannot block anything is cheaper than parsing shell inside a hook.
+- Verified the bash-less Windows path while I was in there: with no bash, the wrapper produces no output and returns 0, and the command proceeds untouched. That is what the README promises.
+
 ## 0.9.1 — 2026-08-25
 
 - Published the script behind the 0.9.0 numbers: `evals/tools/measure-live-sessions.py`. It reads your own session transcripts, writes nothing, sends nothing anywhere, and prints the same aggregates the write-up quotes. An eval nobody else can rerun is a claim rather than evidence, and this repo has been arguing the opposite for three releases.

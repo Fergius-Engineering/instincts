@@ -10,16 +10,32 @@ set -euo pipefail
 
 payload="$(cat)"
 
-# No jq dependency. The matcher is Bash/PowerShell, so the payload is a command
-# invocation - matching the raw JSON is good enough for a reminder that can only
-# ever add one line, and can never block.
+# Pull out the command field without a jq dependency. Cutting at the first
+# quote can truncate a command that embeds one, which only ever costs us a
+# match, never a false block.
 case "$payload" in
+    *'"command":"'*) ;;
+    *) exit 0 ;;
+esac
+cmd="${payload#*\"command\":\"}"
+cmd="${cmd%%\"*}"
+
+case "$cmd" in
     *"git commit"*|*"git push"*|*"gh pr create"*) ;;
     *) exit 0 ;;
 esac
 
-read -r -d '' line <<'TXT' || true
-Work is about to leave this machine. If you would call it done and instincts:independent-review-gate is not loaded this session, load it before this lands. It does not override an explicit instruction to commit or push.
-TXT
+# Known and accepted: a command that merely mentions one of those, like a
+# heredoc writing "remember to git commit later" into a file, gets the nudge
+# too. It adds one sentence and can't block anything, so the noise is cheaper
+# than parsing shell here.
+
+line="Work is about to leave this machine. If you would call it done and instincts:independent-review-gate is not loaded this session, load it before this lands. It does not override an explicit instruction to commit or push."
+
+# Escape before embedding: the day someone adds a quote to that sentence, the
+# hook must still emit valid JSON instead of a broken payload nobody notices.
+line="${line//\\/\\\\}"
+line="${line//\"/\\\"}"
+line="${line//$'\n'/\\n}"
 
 printf '{"hookSpecificOutput":{"hookEventName":"PreToolUse","additionalContext":"%s"}}\n' "$line"
