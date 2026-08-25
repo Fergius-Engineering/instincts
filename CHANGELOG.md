@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.9.3 — 2026-08-25
+
+- The measurement tool now guesses what kind of session it is looking at — a UE project, a Python service, or neither — and applies the trigger signals that fit, then reports firing per skill both overall and per shape. Same corpus, sharper question.
+- Tightened two detectors after they lied to me. Grepping a log while debugging is not what `logging-for-remote-diagnosis` triggers on, and running a build is not "touching build or CI config", but both were counted that way. The loose version reported 108 moments at 8% firing and 68 at 24%; the honest one says 28 at 14% and 17 at **47%**, and the second is not a gap at all. A detector that measures something merely adjacent to a skill's trigger invents a gap, and an hour of work nearly went into fixing that invented one.
+- What the corpus says now: the review gate at 6% (the hook that fixes it postdates this data), `tests-with-teeth` 34%, `logging-for-remote-diagnosis` 14%, and three skills that have not fired once — though on four to thirteen moments each, which is not enough to call them dead.
+
 ## 0.9.2 — 2026-08-25
 
 - Fixed a latent break in `hooks/ship-gate` that an independent review caught: the injected sentence went straight into the JSON with no escaping, so the first person to put a quote in that wording would have shipped a malformed payload, silently. It escapes now, and `hooks/test-ship-gate` covers it with a control run that strips the escaping and expects the break — a check that cannot fail is not a check.
